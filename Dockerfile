@@ -95,3 +95,5 @@ RUN source ~/.bashrc
 RUN pip install gdown
 
 RUN mkdir video_input_folder && cd video_input_folder && mkdir input
+
+EXPOSE 80
