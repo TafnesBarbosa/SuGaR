@@ -5,7 +5,7 @@ FROM nvidia/cuda:${CUDA_VERSION}-devel-ubuntu${OS_VERSION}
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-ARG CUDA_ARCHITECTURES=86
+ARG CUDA_ARCHITECTURES=70 # 70 para DGX-1. 86 para Nvidia RTX 3070 TI.
 
 # Instale o Conda
 RUN apt-get update && \
