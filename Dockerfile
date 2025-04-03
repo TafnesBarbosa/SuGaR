@@ -92,7 +92,42 @@ RUN echo "cd gaussian_splatting/submodules/diff-gaussian-rasterization/" >> ~/.b
     echo "cd ../../../" >> ~/.bashrc
 RUN source ~/.bashrc
 
+RUN git clone https://github.com/NVlabs/nvdiffrast
+RUN echo "cd nvdiffrast" >> ~/.bashrc && \
+    echo "pip install ." >> ~/.bashrc && \
+    echo "cd ../" >> ~/.bashrc
+RUN source ~/.bashrc
+
 RUN pip install gdown
+
+RUN echo "conda deactivate" >> ~/.bashrc && \
+    echo "cd ../" >> ~/.bashrc
+RUN source ~/.bashrc
+
+RUN conda create --name nerfstudio -y python=3.8
+
+SHELL ["/bin/bash", "-c"]
+RUN conda init bash
+RUN echo "conda activate nerfstudio" >> ~/.bashrc
+RUN source ~/.bashrc
+
+RUN echo "pip install --upgrade pip" >> ~/.bashrc
+RUN source ~/.bashrc
+
+RUN echo "pip install torch==2.1.2+cu118 torchvision==0.16.2+cu118 --extra-index-url https://download.pytorch.org/whl/cu118" >> ~/.bashrc && \
+    echo "pip install ninja git+https://github.com/NVlabs/tiny-cuda-nn/#subdirectory=bindings/torch" >> ~/.bashrc
+RUN source ~/.bashrc
+
+RUN git clone https://github.com/nerfstudio-project/nerfstudio.git
+RUN echo "cd nerfstudio" >> ~/.bashrc && \
+    echo "pip install --upgrade pip setuptools" >> ~/.bashrc && \
+    echo "pip install -e ." >> ~/.bashrc && \
+    echo "cd ../" >> ~/.bashrc
+RUN source ~/.bashrc
+
+RUN git clone https://github.com/TafnesBarbosa/auditor_classifier.git
+
+RUN mkdir videos
 
 RUN mkdir video_input_folder && cd video_input_folder && mkdir input
 
