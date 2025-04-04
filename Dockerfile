@@ -68,7 +68,7 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     ffmpeg
 
-RUN git clone https://github.com/TafnesBarbosa/SuGaR.git --recursive
+RUN git clone https://github.com/Anttwo/SuGaR.git --recursive
 
 WORKDIR /SuGaR
 
@@ -124,6 +124,8 @@ RUN echo "cd nerfstudio" >> ~/.bashrc && \
     echo "pip install -e ." >> ~/.bashrc && \
     echo "cd ../" >> ~/.bashrc
 RUN source ~/.bashrc
+
+RUN pip install gdown
 
 RUN git clone https://github.com/TafnesBarbosa/auditor_classifier.git
 
